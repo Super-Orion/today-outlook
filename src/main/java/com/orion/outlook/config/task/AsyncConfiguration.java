@@ -1,4 +1,4 @@
-package com.orion.outlook.config;
+package com.orion.outlook.config.task;
 
 import java.util.concurrent.Executor;
 import org.slf4j.Logger;
@@ -30,10 +30,9 @@ public class AsyncConfiguration implements AsyncConfigurer {
     }
 
     @Override
-    @Bean(name = "taskExecutor")
+    @Bean(name = "outlook-async")
     public Executor getAsyncExecutor() {
-        log.debug("Creating Async Task Executor");
-        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        ThreadPoolTaskExecutor executor = new MdcThreadPoolTaskExecutor();
         executor.setCorePoolSize(taskExecutionProperties.getPool().getCoreSize());
         executor.setMaxPoolSize(taskExecutionProperties.getPool().getMaxSize());
         executor.setQueueCapacity(taskExecutionProperties.getPool().getQueueCapacity());

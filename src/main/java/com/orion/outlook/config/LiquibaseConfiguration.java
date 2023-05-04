@@ -30,7 +30,7 @@ public class LiquibaseConfiguration {
 
     @Bean
     public SpringLiquibase liquibase(
-        @Qualifier("taskExecutor") Executor executor,
+        @Qualifier("outlook-async") Executor executor,
         @LiquibaseDataSource ObjectProvider<DataSource> liquibaseDataSource,
         LiquibaseProperties liquibaseProperties,
         ObjectProvider<DataSource> dataSource,
